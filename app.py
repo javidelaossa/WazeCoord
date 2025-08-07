@@ -6,12 +6,16 @@ from sys import exit
 from os import getenv
 from urllib.parse import urlparse
 from flask import Flask, request, render_template_string, redirect
-
+from dotenv import load_dotenv
+import os
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+
+# Carga las variables del archivo .env
+load_dotenv()
 
 def get_google_api_key():
     """
@@ -21,7 +25,7 @@ def get_google_api_key():
     Returns:
         str: The value of the GOOGLE_API_KEY environment variable.
     """
-    api_key = getenv("GOOGLE_API_KEY")
+    api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         logger.error("Error: GOOGLE_API_KEY is not set.")
         exit(1)  # Exit the program with a non-zero status
