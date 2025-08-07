@@ -33,7 +33,7 @@ def get_google_api_key():
 
 GCP_MAPS_API_KEY = get_google_api_key()
 
-def parse_arguments():
+""" def parse_arguments():
     parser = argparse.ArgumentParser(
         description="Script to translate Google Maps link to Waze"
     )
@@ -46,7 +46,7 @@ def parse_arguments():
     parser.add_argument(
         "--port", required=False, default="5000", help="The port to host the web server"
     )
-    return parser.parse_args()
+    return parser.parse_args() """
 
 
 app = Flask(__name__)
@@ -508,7 +508,8 @@ def index():
 
 
 if __name__ == "__main__":
-    args = parse_arguments()
-    args.gcp_maps_api_key = get_google_api_key()
-    logger.debug("Arguments parsed successfully.")
-    app.run(host=args.addr, port=args.port)
+    # args = parse_arguments()
+    # args.gcp_maps_api_key = get_google_api_key()
+    # logger.debug("Arguments parsed successfully.")
+    # app.run(host=args.addr, port=args.port)
+    app.run()
