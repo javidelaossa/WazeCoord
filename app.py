@@ -25,12 +25,13 @@ def get_google_api_key():
     Returns:
         str: The value of the GOOGLE_API_KEY environment variable.
     """
-    api_key = os.getenv("GOOGLE_API_KEY")
+    api_key = getenv("GOOGLE_API_KEY")
     if not api_key:
         logger.error("Error: GOOGLE_API_KEY is not set.")
         exit(1)  # Exit the program with a non-zero status
     return api_key
 
+GCP_MAPS_API_KEY = get_google_api_key()
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
@@ -494,7 +495,7 @@ def index():
                 return redirect(waze_lnk)
 
             logger.debug("index: trying default flow")
-            wlink = get_wise_link(url, args.gcp_maps_api_key)
+            wlink = get_wise_link(url, GCP_MAPS_API_KEY)
             if wlink:
                 # Redirect the user to the generated Google Maps link
                 logger.debug("index: default flow succsess")
