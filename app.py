@@ -166,6 +166,8 @@ HTML_BROKEN = """
 """
 
 # HTML Template
+# ...existing code...
+
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="en">
@@ -199,7 +201,7 @@ HTML_TEMPLATE = """
     <div class="card shadow">
         <div class="card-body">
             <h1 class="card-title text-center mb-4">Google Maps URL to Waze</h1>
-            <form method="post" class="text-center" onsubmit="showSpinner()">
+            <form method="post" class="text-center" id="mapsForm" onsubmit="showSpinner()">
                 <div class="mb-3">
                     <label for="url" class="form-label">Enter Google Maps URL:</label>
                     <input type="text" id="url" name="url" class="form-control" placeholder="Paste your Google Maps link here" required>
@@ -211,7 +213,7 @@ HTML_TEMPLATE = """
 
     <!-- Contribution Section -->
     <div class="card shadow mt-4">
-        <div class="card-body text-center"> <!-- Center align content -->
+        <div class="card-body text-center">
             <h5 class="card-title">Contribute</h5>
             <p class="card-text">
                 Have ideas to make this better? Check out the project on GitHub and share your suggestions or improvements:
@@ -261,11 +263,22 @@ HTML_TEMPLATE = """
         spinner.style.display = 'none';
         window.location.href = '/'; // Redirect to root
     }
+
+    // Auto-submit if ?url=... is present
+    window.addEventListener('DOMContentLoaded', function() {
+        const params = new URLSearchParams(window.location.search);
+        const urlParam = params.get('url');
+        if (urlParam) {
+            document.getElementById('url').value = urlParam;
+            document.getElementById('mapsForm').submit();
+        }
+    });
 </script>
 
 </body>
 </html>
 """
+# ...existing code...
 
 
 def places_api_parse_cid(shitty_link):
