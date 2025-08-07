@@ -21,7 +21,7 @@ def get_google_api_key():
     Returns:
         str: The value of the GOOGLE_API_KEY environment variable.
     """
-    api_key = "AIzaSyC8_FKE3s0KAo65SPaWDZDXIR5E4X8LyRo"#getenv("GOOGLE_API_KEY")
+    api_key = getenv("GOOGLE_API_KEY")
     if not api_key:
         logger.error("Error: GOOGLE_API_KEY is not set.")
         exit(1)  # Exit the program with a non-zero status
